@@ -1,0 +1,69 @@
+Usuario: postgres
+Clave: admin
+
+Comandos por terminal:
+
+	--
+
+	psql -U postgres
+
+	=> Ingresa a psql
+	=> sudo -i -u postgres => psql (en linux)
+
+	--
+
+	\l
+	=> lista las bases de datos
+
+	\q
+	=> quit
+
+	\?
+	=> documentacion
+
+	\c database_name
+	=> change database
+
+	\d nombre_tabla
+	=> tablas de las bases de datos
+
+	\dt
+	=> informacion de las tablas
+
+	\du
+	=> informacion de los usuarios
+
+	--
+
+	CREATE BATABASE nombre;
+
+	=> crea una base de datos con el nombre
+
+	--
+
+	DROP DATABASE nombre;
+
+	=> elimina la base de datos
+
+	--
+
+	CREATE TABLE table(
+		id INTEGER PRIMARY KEY,
+		description VARCHAR(80) NOT NULL
+	);
+
+	=> como crear una tabla
+
+	--
+
+	INSERT INTO table(id, description) values(1, 'description 1');
+
+	=> insertar valores a la tabla, usar '' para VARCHAR
+
+	--
+
+	SELECT * FROM table;
+
+	=> muestra los valores de la tabla
+
+	--

@@ -1,0 +1,5 @@
+Comandos por terminal:	
+
+	select count(*) from persons
+
+	=> Cuenta

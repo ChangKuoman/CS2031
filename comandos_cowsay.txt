@@ -1,0 +1,32 @@
+Descargar cowsay en linux:
+
+	sudo apt-get install -y cowsay
+
+Ver comandos de cowsay:
+
+	man cowsay
+
+Comandos:
+
+	--
+
+	cowsay hello utec
+	
+	=> Sale una vaca con el texto hello utec
+
+	--
+
+	cowsay -e ^^ hello utec
+
+	=> Cambia los ojitos de la vaca por ^^
+	
+	--
+
+	cowsay -f tux Tux is Linux\'s mascot!
+	
+	=> Cambia la vaca a el pinguino de Linux
+	=> Caracteres especiales en Linux: '!$#()[]%&
+	=> Escaping \'
+	=> Quotear '()[]%&'
+
+	--
