@@ -1,5 +1,78 @@
-Comandos por terminal:	
+Python (dentro de venv):
+
+	Creando y anadiendo Persons a la base de datos:
+
+		from app import db, Person
+		p1 = Person(id=1, name='Kevin')
+		db.session.add(p1)
+		db.session.commit()
+
+		p2 = Person(id=2, name='Gabriel')
+		p3 = Person(id=3, name='Diego')
+		p4 = Person(id=4, name='Leonardo')
+		db.session.add_all([p2, p3, p4])
+		db.session.commit()	
+
+Comandos psql select por terminal:
+
+	SELECT * FROM persons WHERE name='Diego';
+
+	SELECT * FROM persons WHERE name='Diego' limit 1;
+
+	SELECT * FROM persons WHERE name='Diego' and id=2;	
 
 	select count(*) from persons
 
-	=> Cuenta
+Comandos select desde Python
+
+	Person.query.all()
+	=> da todas los elementos
+
+	Person.query.filter_by(name='Diego').first()
+	=> da el primer elemento con ese atributo
+
+	Person.query.filter_by(name='Diego')
+	=> da el objeto de la base de datos, direccion de memoria
+
+	Person.query.filter_by(name='Diego').all()
+	=> da todos los elementos con ese atributo
+
+	Person.query.filter_by(name='Diego').filter_by(id=2).all()
+	=> concatenando filter_by
+
+	db.session.query(Person)
+	=> da el objeto de la base de datos, direccion de memoria
+
+	db.session.query(Person).all()
+	=> da todos los elementos
+
+Comandos order en Python:
+
+	Person.query.order_by(Person.name).all()
+
+	Person.query.order_by(db.desc(Person.name)).all()
+
+Comando limit en Python:
+
+	Person.query.limit(3).all()
+
+Comandos psql delete por terminal:
+
+	DELETE FROM persons where id=4;
+
+	DELETE FROM person WHERE id IN (3, 6)
+
+Comandos query en Python:
+
+	query = Person.query.filter(Person.name == 'Diego')
+	query.count()
+	>>> 2
+
+	person_id = 3
+	Person.query.get(person_id)
+	>>> Person: id=3, name=Andy
+
+	query = Person.query.filter_by(name = 'Diego')
+	query.delete()
+	>>> 2
+	db.session.commit()

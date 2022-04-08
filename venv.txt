@@ -4,3 +4,5 @@ Create a venv:
 	source venv/bin/activate (venv/scripts/activate en windows)
 	pip install psycopg2-binary
 	pip freeze > requirements.txt
+
+	pip -r install requirements.txt
