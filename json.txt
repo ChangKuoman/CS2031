@@ -1,0 +1,5 @@
+
+import json
+student = '{"name": "Marvin", "Apellido": "Abisrror"}'
+data_dict = json.loads(student)
+data_str = json.dumps(data_dict)
