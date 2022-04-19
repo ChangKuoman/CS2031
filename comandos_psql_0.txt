@@ -10,6 +10,8 @@ Comandos por terminal:
 	=> Ingresa a psql
 	=> sudo -i -u postgres => psql (en linux)
 
+	=> sudo -u postgres psql
+
 	--
 
 	\l
@@ -35,7 +37,7 @@ Comandos por terminal:
 
 	--
 
-	CREATE BATABASE nombre;
+	CREATE DATABASE nombre;
 
 	=> crea una base de datos con el nombre
 
