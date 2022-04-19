@@ -4,17 +4,14 @@
     </head>
 
     <body>
+        <form action="/todos/create" method="GET">
+            <input type="text" name="description"/>
+            <input type="submit" value="Create" />
+        </form>
         <ol>
             {% for d in data %}
-                {% if d.description == 'todo 2' %}
-                    <p> Algo </p>
-                {% endif %}
                 <li>{{d.description}}</li>
             {% endfor %}
         </ol>
-        {{data}}
-        <div>
-            {{2+5}}
-        </div>
     </body>
 </html>
