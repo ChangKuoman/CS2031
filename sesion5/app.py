@@ -1,4 +1,5 @@
 # imports
+import sys
 from flask import (
     Flask,
     render_template,
@@ -37,19 +38,33 @@ def index():
 
 @app.route('/todos/create', methods=['POST'])
 def create_todo():
-    description = request.form.get('description', '')
-    todo = Todo(description=description)
-    db.session.add(todo)
-    db.session.commit()
+    try:
+        description = request.form.get('description', '')
+        todo = Todo(description=description)
+        db.session.add(todo)
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        print(sys.exs_info())
+        db.session.rollback()
+    finally:
+        db.session.close()
     return redirect(url_for('index'))
 
 
 @app.route('/todos/create', methods=['GET'])
 def create_todo_get():
-    description = request.args.get('description', '')
-    todo = Todo(description=description)
-    db.session.add(todo)
-    db.session.commit()
+    try:
+        description = request.args.get('description', '')
+        todo = Todo(description=description)
+        db.session.add(todo)
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        print(sys.exs_info())
+        db.session.rollback()
+    finally:
+        db.session.close()
     return redirect(url_for('index'))
 
 
