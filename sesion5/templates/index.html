@@ -1,9 +1,20 @@
 <html>
     <head>
         <title>Todo App</title>
+        <style>
+            .container {
+                width: 300px;
+                height: 200px;
+                border: 2px solid red;
+                padding: 25px;
+                margin: 25px;
+                font: 1em sans-serif;
+            }
+        </style>
     </head>
 
     <body>
+        <!--
         <form action="/todos/create" method="GET">
             <input type="text" name="description"/>
             <input type="submit" value="Create" />
@@ -13,5 +24,20 @@
                 <li>{{d.description}}</li>
             {% endfor %}
         </ol>
+        -->
+
+        <div class="container">
+            <a href="https://google.com" target="_self">
+                google link
+            </a>
+        </div>
+
+        <div class="container" style="border: 1px solid blue !important">
+            <a href="https://google.com" target="_target" />
+            <p>
+                Bienvenides a UTEC
+            </p>
+        </div>
+
     </body>
 </html>
