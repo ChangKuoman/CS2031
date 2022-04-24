@@ -1,13 +1,14 @@
 # imports
 import sys
+from crypt import methods
 from flask import (
     Flask,
+    jsonify,
     render_template,
     request,
     redirect,
     url_for
 )
-
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -38,18 +39,20 @@ def index():
 
 @app.route('/todos/create', methods=['POST'])
 def create_todo():
+    response = {}
     try:
-        description = request.form.get('description', '')
+        description = request.get_json()['description']
         todo = Todo(description=description)
         db.session.add(todo)
         db.session.commit()
+        response['description'] = description
     except Exception as e:
         print(e)
         print(sys.exs_info())
         db.session.rollback()
     finally:
         db.session.close()
-    return redirect(url_for('index'))
+    return jsonify(response)
 
 
 @app.route('/todos/create', methods=['GET'])

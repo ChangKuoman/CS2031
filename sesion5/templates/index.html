@@ -14,18 +14,44 @@
     </head>
 
     <body>
-        <!--
-        <form action="/todos/create" method="GET">
-            <input type="text" name="description"/>
+        
+        <form id="form" action="/todos/create" method="POST">
+            <input type="text" id="description" name="description"/>
             <input type="submit" value="Create" />
         </form>
-        <ol>
+        <ol id="todos">
             {% for d in data %}
                 <li>{{d.description}}</li>
             {% endfor %}
         </ol>
-        -->
 
+        <script>
+            const descriptionInput = document.getElementById("description");
+            document.getElementById("form").onsubmit = function(e) {
+                e.preventDefault();
+                const description = descriptionInput.value;
+                fetch('/todos/create', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        'description': description
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(
+                    //function(response) {
+                    //return response.json();}
+                    response => response.json()
+                ).then(function(jsonResponse){
+                    console.log('jsonResponse: ', jsonResponse);
+                    const li = document.createElement('li');
+                    li.innerHTML = jsonResponse['description'];
+                    document.getElementById('todos').appendChild(li);
+                });
+            }
+        </script>
+        
+        <!--
         <div class="container">
             <a href="https://google.com" target="_self">
                 google link
@@ -38,6 +64,6 @@
                 Bienvenides a UTEC
             </p>
         </div>
-
+        -->
     </body>
 </html>
