@@ -1,0 +1,5 @@
+const
+let
+var
+
+transit, pending, commited, xd
