@@ -11,14 +11,14 @@ from flask import (
     url_for
 )
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_migrate import Migrate
 
 # configurations
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/todoappdbp10'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
+migrate = Migrate(app, db)
 
 # models
 class Todo(db.Model):
@@ -29,7 +29,7 @@ class Todo(db.Model):
     def __repr__(self):
         return f'Todo: id={self.id}, description={self.description}'
 
-db.create_all()
+#db.create_all()
 
 
 # controllers
