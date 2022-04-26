@@ -1,0 +1,18 @@
+pip install flask-migrate
+
+# a nivel de esquema -> ok
+# a nivel de data -> hay que tener cuidado
+
+# en el archivo .py
+from flask_migrate import Migrate
+migrate = Migrate(app, db)
+
+# por linea de comando
+flask db init
+
+flask db migrate
+
+flask db upgrade
+flask db downgrade
+
+flask db stamp head
