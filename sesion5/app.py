@@ -3,6 +3,7 @@ import sys
 from crypt import methods
 from flask import (
     Flask,
+    abort,
     jsonify,
     render_template,
     request,
@@ -39,20 +40,26 @@ def index():
 
 @app.route('/todos/create', methods=['POST'])
 def create_todo():
+    error = False
     response = {}
     try:
         description = request.get_json()['description']
-        todo = Todo(description=description)
+        todo = Todo(description2=description)
         db.session.add(todo)
         db.session.commit()
         response['description'] = description
     except Exception as e:
+        error = True
         print(e)
         print(sys.exs_info())
         db.session.rollback()
     finally:
         db.session.close()
-    return jsonify(response)
+    
+    if error:
+        abort(500)
+    else:
+        return jsonify(response)
 
 
 @app.route('/todos/create', methods=['GET'])
