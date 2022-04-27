@@ -25,6 +25,7 @@ class Todo(db.Model):
     __tablename__ = 'todos'
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(), nullable=False)
+    completed = db.Column(db.Boolean, nullable=False, default=False)
 
     def __repr__(self):
         return f'Todo: id={self.id}, description={self.description}'
@@ -35,7 +36,7 @@ class Todo(db.Model):
 # controllers
 @app.route('/')
 def index():
-    return render_template('index.html', data=Todo.query.all())
+    return render_template('index.html', todos=Todo.query.all())
 
 
 @app.route('/todos/create', methods=['POST'])
@@ -44,7 +45,7 @@ def create_todo():
     response = {}
     try:
         description = request.get_json()['description']
-        todo = Todo(description2=description)
+        todo = Todo(description=description)
         db.session.add(todo)
         db.session.commit()
         response['description'] = description
@@ -61,6 +62,14 @@ def create_todo():
     else:
         return jsonify(response)
 
+
+@app.route('/todos/set-completed/<todo_id>', methods=['POST'])
+def update_completed(todo_id):
+    # elegante por path parameter solo pasar como maximo 2 parametros
+    new_completed = request.get_json()['new_completed']
+    todo = Todo.query.get(todo_id)
+    todo.completed = new_completed
+    db.session.commit()
 
 @app.route('/todos/create', methods=['GET'])
 def create_todo_get():
