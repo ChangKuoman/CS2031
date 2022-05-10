@@ -1,0 +1,32 @@
+<html>
+    <form action="/create" method="POST">
+        <label for="nombre">Nombre: </label>
+        <input type="text" id="nombre" name="nombre"/><br>
+
+        <label for="sexo">Sexo: </label>
+        <select name="sexo" id="sexo">
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Otro">Otro</option>
+        </select>
+    </form>
+
+    <body>
+        <div>
+            <h1>GATO</h1>
+            <button id="cat-button">DAR CLICK AQUI</button>
+            <img id="cat-div">
+        </div>
+        <script>
+            let catButton = document.getElementById("cat-button");
+            let imgCat = document.getElementById("cat-div");
+
+            catButton.addEventListener('click', () => {
+                fetch('/resources/cat.jpeg');
+            });
+
+        </script>
+
+    </body>
+
+</html>
