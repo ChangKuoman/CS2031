@@ -36,7 +36,7 @@ class Todo(db.Model):
 # controllers
 @app.route('/')
 def index():
-    return render_template('index.html', todos=Todo.query.all())
+    return render_template('index.html', todos=Todo.query.order_by('id').all())
 
 
 @app.route('/todos/create', methods=['POST'])
@@ -63,13 +63,23 @@ def create_todo():
         return jsonify(response)
 
 
-@app.route('/todos/set-completed/<todo_id>', methods=['POST'])
+@app.route('/todos/<todo_id>/set-completed', methods=['POST'])
 def update_completed(todo_id):
     # elegante por path parameter solo pasar como maximo 2 parametros
-    new_completed = request.get_json()['new_completed']
-    todo = Todo.query.get(todo_id)
-    todo.completed = new_completed
-    db.session.commit()
+    try:
+        print("halo")
+        new_completed = request.get_json()['new_completed']
+        todo = Todo.query.get(todo_id)
+        todo.completed = new_completed
+        db.session.commit()
+        return redirect(url_for('index'))
+    except Exception as e:
+        print(e)
+        print(sys.exs_info())
+        db.session.rollback()
+    finally:
+        db.session.close()
+    return redirect(url_for('index'))
 
 @app.route('/todos/create', methods=['GET'])
 def create_todo_get():
