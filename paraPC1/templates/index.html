@@ -1,0 +1,74 @@
+<html>
+    <title> USERS </title>
+    <style>
+        .error {
+            display: none;
+        }
+    </style>
+
+    <body>
+        <!--
+        <form action="/create" method="POST">
+        -->
+        <form id="form">  
+            <p>Usuario</p>
+            <input type="text" id="username" name="username" />
+            <p>Clave</p>
+            <input type="password" id="password" name="password" />
+            <input type="submit" value="Create" />
+        </form>
+
+        <div class="error" id="error">
+            <p style="color: red; font-size: 14px;">
+                AN ERROR HAS OCURRED, TRY LATER
+            </p>
+        </div>
+
+
+        <ol id="users">
+            {% for user in users %}
+            <li>
+                {{user.username}}
+                {{user.password}}
+                {{user.fecha}}
+            </li>
+            {% endfor %}
+        </ol>
+
+        <script>
+            const usernameInput = document.getElementById("username");
+            const passwordInput = document.getElementById("password");
+
+            document.getElementById("form").onsubmit = function(e){
+                e.preventDefault();
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+                fetch('/create', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        'username': username,
+                        'password': password
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(
+                    response => response.json()
+                ).then(function(jsonResponse){
+                    console.log('jsonResponse: ', jsonResponse);
+                    const li = document.createElement('li');
+                    const date = new Date().toISOString().slice(0, 10);
+                    li.innerHTML = jsonResponse['username'] + " " + jsonResponse['password'] + " " + date;
+                    document.getElementById('users').appendChild(li);
+                }).catch(function() {
+                    document.getElementById('error').className = '';
+                });
+            }
+
+            document.getElementById('form').onclick = function(e) {
+                document.getElementById('error').className = 'error';
+            }
+        </script>
+        
+    </body>
+</html>
