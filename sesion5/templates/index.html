@@ -38,6 +38,18 @@
                 height: 100%;
                 border: 1px solid red;
             }
+
+            li {
+                clear: both;
+            }
+
+            ul > li > button{
+                border: none;
+                color:red;
+                outline: none;
+                float: right;
+                font-size: 20px;
+            }
         </style>
     </head>
 
@@ -61,6 +73,7 @@
                         <li>
                             <input class="check-completed" data-id="{{todo.id}}" type="checkbox" {% if todo.completed %} checked {% endif %}>
                             {{todo.description}}
+                            <button class="delete-button" data-id="{{todo.id}}">&cross;</button>
                         </li>
                     {% endfor %}
                 </ul>
@@ -68,6 +81,28 @@
         </div>
 
         <script>
+            // delete todo
+            const items = document.querySelectorAll('.delete-button');
+            for (let i = 0; i < items.length; i++){
+                const item = items[i];
+                item.onclick = function(e){
+                    console.log(e);
+                    const todo_id = e.target.dataset['id'];
+                    fetch('/todos/' + todo_id + '/delete-todo', {
+                        method: 'DELETE'
+                    }).then(function(response){
+                        return response.json();
+                    }).then(function(jsonResponse){
+                        console.log('jsonResponse: ', jsonResponse);
+                        if (jsonResponse['success']){
+                            // remove child
+                            const item = e.target.parentElement;
+                            item.remove();
+                        }
+                    });
+                }
+            }
+
             // update complete from todo
             const checkboxes = document.querySelectorAll('.check-completed');
             for (let i = 0; i < checkboxes.length; i++){
@@ -111,8 +146,29 @@
                 ).then(function(jsonResponse){
                     console.log('jsonResponse: ', jsonResponse);
                     const li = document.createElement('li');
-                    li.innerHTML = jsonResponse['description'];
+                    const checkbox = document.createElement('input');
+                    const deleteBtn = document.createElement('button');
+
+                    checkbox.type = 'checkbox';
+                    checkbox.className = 'check-completed';
+                    checkbox.setAttribute('data-id', jsonResponse['id']);
+
+                    li.appendChild(checkbox);
+
+                    deleteBtn.className = 'delete-button';
+                    deleteBtn.setAttribute('data-id', jsonResponse['id']);
+                    deleteBtn.innerHTML = '&cross;';
+
+                    li.appendChild(deleteBtn);
+
+                    const text = document.createTextNode(
+                        ' ' + jsonResponse['description']
+                    );
+                    li.appendChild(text);
+
                     document.getElementById('todos').appendChild(li);
+
+                    window.location.reload;
                 }).catch(function() {
                     document.getElementById('error').className = '';
                 });
