@@ -1,2 +1,5 @@
 .idea
 venv
+sesion5/__pycache__
+sesion5/migrations/__pycache__
+sesion5/migrations/versions/__pycache__

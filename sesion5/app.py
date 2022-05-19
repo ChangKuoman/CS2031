@@ -44,6 +44,34 @@ class TodoList(db.Model):
 
 
 # controllers
+@app.route('/lists/create', methods=['POST', 'GET'])
+def create_list():
+    response = {}
+    try:
+        name = request.get_json()['name']
+        list = TodoList(name)
+        db.session.add(list)
+        db.session.commit()
+        response['id'] = list.id
+        response['name'] = name
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+    finally:
+        db.session.close()
+
+    return jsonify(response)
+
+
+@app.route('/list/<list_id>')
+def get_list_todos(list_id):
+    return render_template(
+        'index.html',
+        todos=Todo.query.filter_by(list_id=list_id).order_by('id').all(),
+        current_list=TodoList.query.get(list_id),
+        lists=TodoList.query.all()
+        )
+
 @app.route('/todos/<todo_id>/delete-todo', methods=['DELETE'])
 def delete_todo(todo_id):
     response = {}
@@ -64,7 +92,7 @@ def delete_todo(todo_id):
 
 @app.route('/')
 def index():
-    return render_template('index.html', todos=Todo.query.order_by('id').all())
+    return redirect(url_for('get_list_todos', list_id=1))
 
 
 @app.route('/todos/create', methods=['POST'])
@@ -73,7 +101,8 @@ def create_todo():
     response = {}
     try:
         description = request.get_json()['description']
-        todo = Todo(description=description)
+        list_id = request.get_json()['list_id']
+        todo = Todo(description=description, list_id=list_id)
         db.session.add(todo)
         db.session.commit()
         response['description'] = description
