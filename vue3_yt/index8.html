@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" :disabled="txtDisabled" required>
+        <hr>
+        <input type="checkbox" :checked="usuarios==5">
+        <hr>
+        <form method="POST">
+            <input type="text" :required="obligatorio">
+            <button type="submit">Submit</button>
+        </form>
+        <hr>
+        <!--
+        <select v-model="idFruta" class="browser-default">
+        -->
+        <select class="browser-default">
+            <option v-for="fruta in frutas" v-bind:value="fruta.id" :selected="fruta.selected">{{fruta.id}} - {{fruta.nombre}}</option>
+        </select>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        // disabled
+        const app = {
+            data(){
+                return {
+                    txtDisabled: false,
+                    usuarios: 5,
+                    obligatorio: true,
+                    frutas: [
+                        {
+                            id:1,
+                            nombre:'Manzana',
+                            selected:false
+                        },
+                        {
+                            id:2,
+                            nombre:'Pera',
+                            selected:false
+                        },
+                        {
+                            id:3,
+                            nombre:'Sandía',
+                            selected:true
+                        },
+                    ],
+                    idFruta: 2
+                }
+            }
+        }
+
+        var mounted = Vue.createApp(app).mount('#app')
+
+    </script>
+</body>
+</html>
