@@ -49,7 +49,7 @@ def create_list():
     response = {}
     try:
         name = request.get_json()['name']
-        list = TodoList(name)
+        list = TodoList(name=name)
         db.session.add(list)
         db.session.commit()
         response['id'] = list.id
@@ -63,7 +63,7 @@ def create_list():
     return jsonify(response)
 
 
-@app.route('/list/<list_id>')
+@app.route('/lists/<list_id>')
 def get_list_todos(list_id):
     return render_template(
         'index.html',
@@ -101,15 +101,14 @@ def create_todo():
     response = {}
     try:
         description = request.get_json()['description']
-        list_id = request.get_json()['list_id']
-        todo = Todo(description=description, list_id=list_id)
+        item_id = request.get_json()['item_id']
+        todo = Todo(description=description, list_id=item_id)
         db.session.add(todo)
         db.session.commit()
         response['description'] = description
     except Exception as e:
         error = True
         print(e)
-        print(sys.exs_info())
         db.session.rollback()
     finally:
         db.session.close()

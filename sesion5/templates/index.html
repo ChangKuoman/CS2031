@@ -179,7 +179,7 @@
                     method: 'POST',
                     body: JSON.stringify({
                         'description': description,
-                        'list_id': list_id
+                        'item_id': item_id
                     }),
                     headers: {
                         'Content-Type': 'application/json'
@@ -213,7 +213,7 @@
 
                     document.getElementById('todos').appendChild(li);
 
-                    window.location.reload;
+                    window.location.reload();
                 }).catch(function() {
                     document.getElementById('error').className = '';
                 });
