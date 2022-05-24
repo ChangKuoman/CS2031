@@ -11,5 +11,8 @@
 | index7.html | v-if vs v-show|
 | index8.html | disable, selected, checked, required |
 | index9.html | v-bind:class |
-| index10.hmtl | |
-| index11.html | |
+| index10.hmtl | v-bind:style |
+| index11.html | computed: function(){} |
+| index12.html | ciclo de vida |
+| index13.html | componentes |
+| index14.html & main.js & menu.component.js | separar componentes & refs |

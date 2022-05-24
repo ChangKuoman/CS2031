@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!--
+            'font-size'
+            fontSize
+        -->
+        <div v-bind:style="{'font-size': '16px', heigth: '50px', width: '50px', backgroundColor: color}">
+            Hola Mundo
+        </div>
+        <hr>
+        <div v-bind:style="[myStyle, myStyle2]">
+            Hola Mundo
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        // v-if
+        const app = {
+            data(){
+                return {
+                    myStyle: {
+                        'font-size': '16px',
+                        heigth: '50px',
+                        width: '50px',
+                        backgroundColor: 'green'
+                    },
+                    myStyle2: {
+                        'border': 'dashed 1px black'
+                    },
+                    color: 'red'
+                }
+            }
+        }
+
+        var mounted = Vue.createApp(app).mount('#app')
+
+    </script>
+</body>
+</html>
