@@ -1,6 +1,5 @@
 # imports
 import sys
-from crypt import methods
 from flask import (
     Flask,
     abort,
