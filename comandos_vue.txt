@@ -1,0 +1,6 @@
+npm install -g @vue/cli
+vue create [nombre]
+npm run serve
+npm install materialize-css@next --save
+npm install material-icons@latest --save
+npm install --save axios vue-axios
