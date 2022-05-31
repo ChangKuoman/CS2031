@@ -8,4 +8,5 @@ Create a venv:
 	pip install -r requirements.txt
 
 $env:FLASK_APP = 'server'
+$env:FLASK_ENV = "development"
 flask run
