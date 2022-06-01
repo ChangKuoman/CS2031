@@ -1,0 +1,97 @@
+ls
+
+=> Lista las carpetas y archivos dentro del directorio
+=> dir (windows)
+
+--
+
+pwd
+
+=> Muestra la ruta del directorio
+
+--
+
+zip -r sesion2.zip
+
+=> Zipea una carpeta
+
+--
+
+unzip sesion2.zip
+
+=> Deszipea una carrpeta zipeada
+
+--
+
+mkdir carpeta
+
+=> Crea un directorio / carpeta
+
+--
+
+rm -r carpeta
+
+=> Remueve la carpeta y su interior
+=> Para remover un archivo sin -r
+
+--
+
+mv sesion2.zip carpeta/sesion2.zip
+
+=> Mueve un archivo a otro directorio
+
+--
+
+cat app.py
+
+=> Muestra el contenido de un archivo
+
+--
+
+cat app.py algo.py > texto.txt
+
+=> Guarda ambos archivos (concatena) en otro archivo
+
+--
+
+wc requirements.txt
+
+=> word count
+=> Cuenta las palabras, lineas y el peso del archivo
+
+--
+
+vim algo.txt
+
+=> Abre un archivo en el editor vim
+=> Crea el archivo si no existe
+=> Otros editores: nano, joe, emacs
+
+--
+
+clear
+
+=> Limpia la terminal
+=> cls (en windows)
+
+--
+
+cd carpeta
+
+=> change directory
+=> Entra a la carpeta
+=> se puede indicar varias carpetas: carpeta/subcarpeta
+
+--
+
+cd ..
+
+=> Sale de la carpeta
+
+--
+
+man ls
+
+=> Indica la documentación del comando (ls)
+
+--

@@ -1,7 +1,0 @@
-git remote set-url origin https://youruser:password@github.com/youruser/reponame.git
-
-git remote set-url origin https://ChangKuoman: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@github.com/ChangKuoman/CS2031.git
-
-git clone https://youruser:password@github.com/youruser/reponame.git
-
-git clone https://ChangKuoman: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@github.com/ChangKuoman/CS2031.git

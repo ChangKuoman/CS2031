@@ -1,8 +1,8 @@
-Descargar cowsay en linux:
+Descargar cowsay (unix):
 
 	sudo apt-get install -y cowsay
 
-Ver comandos de cowsay:
+Ver comandos:
 
 	man cowsay
 
@@ -12,13 +12,13 @@ Comandos:
 
 	cowsay hello utec
 	
-	=> Sale una vaca con el texto hello utec
+	=> Sale el texto hello utec
 
 	--
 
 	cowsay -e ^^ hello utec
 
-	=> Cambia los ojitos de la vaca por ^^
+	=> Cambia los ojitos por ^^
 	
 	--
 
