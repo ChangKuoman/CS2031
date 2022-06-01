@@ -3,69 +3,67 @@ Clave: admin
 
 Comandos por terminal:
 
-	--
+--
+Ingresar a psql
 
-	psql -U postgres
+psql -U postgres (windows)
 
-	=> Ingresa a psql
-	=> sudo -i -u postgres => psql (en linux)
+sudo -u postgres psql (unix)
 
-	=> sudo -u postgres psql
+--
 
-	--
+\l
+=> lista las bases de datos
 
-	\l
-	=> lista las bases de datos
+\q
+=> quit
 
-	\q
-	=> quit
+\?
+=> documentacion
 
-	\?
-	=> documentacion
+\c database_name
+=> cambia a database_name
 
-	\c database_name
-	=> change database
+\dt
+=> tablas de las bases de datos
 
-	\d nombre_tabla
-	=> tablas de las bases de datos
+\d nombre_tabla
+=> informacion de las nombre_tabla
 
-	\dt
-	=> informacion de las tablas
+\du
+=> informacion de los usuarios
 
-	\du
-	=> informacion de los usuarios
+--
 
-	--
+CREATE DATABASE nombre;
 
-	CREATE DATABASE nombre;
+=> crea una base de datos con el nombre
 
-	=> crea una base de datos con el nombre
+--
 
-	--
+DROP DATABASE nombre;
 
-	DROP DATABASE nombre;
+=> elimina la base de datos
 
-	=> elimina la base de datos
+--
 
-	--
+CREATE TABLE table(
+	id INTEGER PRIMARY KEY,
+	description VARCHAR(80) NOT NULL
+);
 
-	CREATE TABLE table(
-		id INTEGER PRIMARY KEY,
-		description VARCHAR(80) NOT NULL
-	);
+=> Crea una tabla
 
-	=> como crear una tabla
+--
 
-	--
+INSERT INTO table(id, description) values(1, 'description 1');
 
-	INSERT INTO table(id, description) values(1, 'description 1');
+=> insertar valores a la tabla. (usar '' para VARCHAR)
 
-	=> insertar valores a la tabla, usar '' para VARCHAR
+--
 
-	--
+SELECT * FROM table;
 
-	SELECT * FROM table;
+=> muestra la tabla
 
-	=> muestra los valores de la tabla
-
-	--
+--

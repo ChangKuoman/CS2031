@@ -9,3 +9,5 @@ $param = @{
 
 Invoke-WebRequest @param
 curl @param
+
+https://adamtheautomator.com/powershell-curl/
