@@ -1,0 +1,11 @@
+curl 'http://127.0.0.1:5000/todos'
+
+$param = @{
+    Uri         = "http://127.0.0.1:5000/todos"
+    Method      = "Post"
+    Body        = '{"description": "comer sopa", "completed": false, "list_id": 1}'
+    ContentType = "application/json"
+}
+
+Invoke-WebRequest @param
+curl @param
