@@ -9,4 +9,4 @@ Create a venv:
 
 $env:FLASK_APP = 'server'
 $env:FLASK_ENV = "development"
-flask run
+flask run -p 5001
