@@ -3,5 +3,7 @@ venv
 sesion5/__pycache__
 sesion5/migrations/__pycache__
 sesion5/migrations/versions/__pycache__
-sesion5/backend/__pycache__
-sesion5/backend/server/__pycache__
+sesion6/backend/__pycache__
+sesion6/backend/server/__pycache__
+sesion6/backend2/__pycache__
+sesion6/backend2/server2/__pycache__
