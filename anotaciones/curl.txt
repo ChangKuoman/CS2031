@@ -11,3 +11,17 @@ Invoke-WebRequest @param
 curl @param
 
 https://adamtheautomator.com/powershell-curl/
+
+$param = @{
+    Uri         = "http://127.0.0.1:5000/todos/2"
+    Method      = "Patch"
+    Body        = '{"description": "new description"}'
+    ContentType = "application/json"
+}
+curl @param
+
+$param = @{
+    Uri         = "http://127.0.0.1:5000/todos/2"
+    Method      = "Delete"
+}
+curl @param
