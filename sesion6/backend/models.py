@@ -21,15 +21,31 @@ class Todo(db.Model):
     list_id = db.Column(db.Integer, db.ForeignKey('todolists.id'), nullable=False)
 
     def insert(self):
-        db.session.add(self)
-        db.session.commit()
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except:
+            db.session.rollback()
+        finally:
+            db.session.close()
     
     def update(self):
-        db.session.commit()
+        try:
+            db.session.commit()
+        except:
+            db.session.rollback()
+        finally:
+            db.session.close()
 
     def delete(self):
-        db.session.delete(self)
-        db.session.commit()
+        try:
+            db.session.delete(self)
+            db.session.commit()
+        except:
+            db.session.rollback()
+        finally:
+            db.session.close()
 
     def format(self):
         return {
@@ -47,6 +63,12 @@ class TodoList(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
     todos = db.relationship('Todo', backref='list', lazy=True)
+
+    def format(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }
 
     def __repr__(self):
         return f'TodoList: id={self.id}, description={self.description}'
