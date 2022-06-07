@@ -58,6 +58,16 @@ def create_app(test_config=None):
         description = body.get('description', None)
         completed = body.get('completed', None)
         list_id = body.get('list_id', None)
+        search = body.get('search', None)
+
+        if search:
+            todos = Todo.query.order_by('id').filter(Todo.description.like(f'%{search}%')).all()
+            return jsonify({
+
+            })
+
+        if description is None or list_id is None:
+            abort(422)
 
         todo = Todo(description=description, completed=completed, list_id=list_id)
         new_todo_id = todo.insert()
@@ -167,4 +177,12 @@ def create_app(test_config=None):
             'message': 'Internal Server Error'
         }), 500
     
+    @app.errorhandler(422)
+    def not_found(error):
+        return jsonify({
+            'success': False,
+            'code': 422,
+            'message': 'Unprocessable'
+        }), 422
+
     return app
