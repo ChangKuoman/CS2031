@@ -1,0 +1,9 @@
+python -m unittest
+
+setup -> test1 -> teardown
+setup -> test2 -> teardown
+...
+
+self.assertEqual(esto, esperado)
+self.assertNotEqual(esto, esperado)
+self.assertTrue(esto)
