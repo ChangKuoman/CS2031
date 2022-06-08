@@ -1,8 +1,8 @@
-from turtle import update
 import unittest
 from server import create_app
 from models import setup_db, Todo, TodoList
 import json
+
 
 class TestCaseTodoApp(unittest.TestCase):
     def setUp(self):
@@ -91,6 +91,15 @@ class TestCaseTodoApp(unittest.TestCase):
 
     def test_search_success(self):
         res = self.client().post('/todos', json={'search': 'new'})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['todos'])
+        self.assertTrue(data['total_todos'])
+
+    def test_search_todos_success(self):
+        res = self.client().post('/todos', json={})
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)

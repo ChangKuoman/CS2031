@@ -1,6 +1,3 @@
-from distutils.log import error
-import json
-from shutil import ExecError
 from flask import (
     Flask,
     abort,
@@ -61,9 +58,12 @@ def create_app(test_config=None):
         search = body.get('search', None)
 
         if search:
-            todos = Todo.query.order_by('id').filter(Todo.description.like(f'%{search}%')).all()
+            selection = Todo.query.order_by('id').filter(Todo.description.like(f'%{search}%')).all()
+            todos = paginate_todos(request, selection, False)
             return jsonify({
-
+                'success': True,
+                'todos': todos,
+                'total_todos': len(selection)
             })
 
         if description is None or list_id is None:
