@@ -2,7 +2,7 @@
 
 | html | content |
 |--|--|
-| index.html | métodos, mounted |
+| index1.html | métodos, mounted |
 | index2.html | v-model |
 | index3.html | v-for |
 | index4.html | v-for w materialize |
