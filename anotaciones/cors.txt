@@ -1,0 +1,13 @@
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+CORS(app, resources=r'/api/*')
+
+CORS(app) = CORS(app, "*")
+
+CORS(app)
+
+CORS(app, origins=['https://utec.edu.pe', 'http://127.0.0.1:5001'], max_age=10)
+
+
+
+
